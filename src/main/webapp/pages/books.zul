@@ -1,0 +1,120 @@
+<zk xmlns:n="native">
+   <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+         .top-bar {
+            background: #146C94;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .top-bar button {
+            background: white;
+            color: #3498db;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .top-bar button:hover {
+            background: #ecf0f1;
+        }
+
+       .booked {
+            background-color: #27ae60; 
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+         .bookedCell {
+        background-color: red;
+        color: white;
+        }
+
+        .unbookedCell {
+            background-color: yellow;
+            color: black;
+        }
+        .unbooked {
+            background-color: #2980b9; /* blue */
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        } 
+        .btn-gray {
+            background-color: #7f8c8d;
+            color: white; 
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .btn-gray:hover {
+            background-color: #95a5a6;
+        }
+    </style>
+
+    <div sclass="top-bar">
+        <button onClick='org.zkoss.zk.ui.Executions.sendRedirect("/dashboard")'>Voltar</button>
+        <span style="padding: 12px">Livros</span>
+    </div>
+
+    <window border="none" 
+            apply="org.zkoss.bind.BindComposer"
+            width="100%"
+            height="100%"
+            viewModel="@id('vm') @init('com.fabricio.onlinelibrary.BooksVM')">
+
+        <vlayout width="100%" height="100%" spacing="10px">
+
+            <button label="Criar Novo Livro"
+                    width="200px"
+                    onClick="@command('openBookDialog', book=null)"/>
+
+            <listbox width="100%" mold="paging" pageSize="10" model="@bind(vm.bookList)">
+                <listhead>
+                     <listheader label="Título" hflex="3"/> 
+        <listheader label="Ações" hflex="1"/>
+                </listhead>
+
+                <template name="model" var="book">
+                  <listitem>
+                        <listcell label="@load(book.name)"
+                                ></listcell> 
+                        <listcell>
+                            <button label="@load(book.booked ? 'Devolver' : 'Reservar')"
+                                    sclass="@load(book.booked ? 'btn-gray' : '')"
+                                    tooltiptext="Alterar status de reserva"
+                                    onClick="@command('bookBook', book=book)"/>
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+        </vlayout>
+ 
+        <window id="bookDialog"
+                title="@load(vm.dialogTitle)"
+                mode="modal" width="400px"
+                visible="@bind(vm.dialogVisible)" closable="false">
+
+            <vlayout width="100%" spacing="10px">
+                <textbox placeholder="Título do Livro" width="100%"
+                         value="@bind(vm.editBook.name)"/>
+
+                <hlayout spacing="10px">
+                    <button label="Salvar" onClick="@command('saveBook')"/>
+                    <button label="Cancelar" onClick="@command('closeDialog')"/>
+                </hlayout>
+            </vlayout>
+        </window>
+
+    </window>
+</zk>

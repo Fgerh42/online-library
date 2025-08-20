@@ -1,0 +1,4 @@
+.winBG td.mwt-embedded, .warning td.rwt-embedded, .warning td.lwt-embedded {
+    background-image: none;
+    background-color: Red;
+    }

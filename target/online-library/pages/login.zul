@@ -1,0 +1,56 @@
+<zk> 
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+    <div style="width:100vw; height:100vh; 
+                background: linear-gradient(to bottom right, #146C94, #319AC9); 
+                display:flex; justify-content:center; align-items:center;">
+  
+   <vbox width="100%" height="100%" align="center" pack="center" spacing="10px">
+      <window 
+                    id="loginWindow"
+                    width="400px"
+                    height="300px"
+                    style=" 
+                        background:#f5f5f5;
+                        border-radius:15px; 
+                        box-shadow:0 0 25px rgba(0,0,0,0.3); 
+                        padding:30px;
+                        display:flex; 
+                        flex-direction:column;  
+                        align-items:center;"
+                    position="center"    
+                    contentStyle="background:#f5f5f5;width:90%;height:90%"     
+                    apply="org.zkoss.bind.BindComposer"
+                    viewModel="@id('vm') @init('com.fabricio.onlinelibrary.LoginVM')">
+
+ 
+                <vlayout width="100%" spacing="20px" >
+                 <label 
+                    value="Bem Vindo!" 
+                    style="font-size:32px; font-weight:bold; margin-bottom:40px; color:#146C94;"
+                    />
+                    <textbox placeholder="Usuário" width="100%" value="@bind(vm.username)"/>
+                    <textbox placeholder="Senha" type="password" width="100%" value="@bind(vm.password)"/>
+                    <button label="Entrar" width="100%" 
+                            style="background:#146C94; color:white; border:none; border-radius:8px; padding:12px; cursor:pointer;"
+                            onClick="@command('login')"/>
+                </vlayout>
+
+            </window>
+
+
+            <label value="Novo aqui?" 
+           style="margin-top:15px;font-size:14px; color:#f5f5f5;" 
+           /> 
+           <label value="Cadastre-se" 
+             style="color:#f5f5f5;font-size:18px; cursor:pointer; font-weight:bold;"
+               onClick='Executions.sendRedirect("/register")'/> 
+
+           </vbox>
+    </div>
+</zk>

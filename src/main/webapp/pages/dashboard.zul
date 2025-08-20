@@ -1,0 +1,93 @@
+<zk xmlns:n="native">
+    <style>
+        body, html, .z-window, .z-page, .z-vlayout {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+         .top-bar {
+            background: #146C94;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .cards-row {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;  
+            gap: 24px;
+            flex: 1;
+            padding: 40px;
+        }
+
+        .menu-card {
+            flex: 1;
+            min-width: 200px;
+            border-radius: 12px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+ 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;  
+        }
+
+        .menu-icon {
+            font-size: 36px;
+        }
+
+        .menu-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+
+    <vlayout vflex="1" hflex="1" viewModel="@id('vm') @init('com.fabricio.onlinelibrary.DashboardVM')">  
+
+        <div sclass="top-bar">
+                    <label id="greeting" value=" "/>
+        </div>
+ 
+      
+        <n:script>
+            zk.afterMount(function() {
+                var user = localStorage.getItem('authenticatedUser') || '';
+                if(!user || user === '') { 
+                } else {
+                    zk.Widget.$('$greeting').setValue('Olá ' + user);
+                }
+            });
+        </n:script>
+
+        <div sclass="cards-row">
+            <div sclass="menu-card" style="background:#3498db"
+                  onClick="@command('goToBooks')">
+                <n:div class="menu-icon">📚</n:div>
+                <label sclass="menu-title" value="Livros"/>
+                <label sclass="menu-subtitle" value="Gerencie os livros"/>
+            </div>
+
+            <div sclass="menu-card" style="background:#27ae60"
+                  onClick="@command('goToPeople')">
+                <n:div class="menu-icon">👤</n:div>
+                <label sclass="menu-title" value="Pessoas"/>
+                <label sclass="menu-subtitle" value="Gerencie as pessoas"/>
+            </div>
+        </div>
+    </vlayout>
+</zk>

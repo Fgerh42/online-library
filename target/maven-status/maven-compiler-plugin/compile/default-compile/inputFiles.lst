@@ -1,0 +1,10 @@
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/models/Book.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/database/DBHelper.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/BooksVM.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/UsersVM.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/filter/UrlRewriteFilter.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/LoginVM.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/DashboardVM.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/RegisterVM.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/database/UserDAO.java
+/home/fabricio/projects/online-library/src/main/java/com/fabricio/onlineLibrary/models/User.java

@@ -1,0 +1,98 @@
+<zk xmlns:n="native">
+   <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+         .top-bar {
+            background: #146C94;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .top-bar button {
+            background: white;
+            color: #3498db;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .top-bar button:hover {
+            background: #ecf0f1;
+        }
+        }
+    </style>
+
+
+      <div sclass="top-bar">
+        <button onClick='org.zkoss.zk.ui.Executions.sendRedirect("/dashboard")'>Voltar</button>
+        <span style="padding: 12px">Usuários</span>
+    </div>
+    <window border="none" 
+            apply="org.zkoss.bind.BindComposer"
+             width="100%"
+             height="100%"
+            viewModel="@id('vm') @init('com.fabricio.onlinelibrary.UsersVM')">
+
+        <vlayout width="100%" height="100%" spacing="10px">
+
+            <button label="Criar Novo Usuário"
+                    width="200px"
+                    onClick="@command('openUserDialog', user=null)"/>
+
+            <listbox width="100%" mold="paging" pageSize="10" model="@bind(vm.userList)">
+                <listhead>
+                    <listheader label="ID"/>
+                    <listheader label="Nome"/>
+                    <listheader label="Usuário"/>
+                     <listheader label="Ações"/>
+                </listhead>
+
+                <template name="model" var="user">
+                    <listitem onClick="@command('openUserDialog', user=user)">
+                        <listcell label="@load(user.id.toString())"/>
+                        <listcell label="@load(user.name)"/> 
+                        <listcell label="@load(user.username)"/>
+                        <listcell>
+                            <button iconSclass="z-icon-trash"
+                                    tooltiptext="Excluir"
+                                    onClick="@command('deleteUser', user=user)"
+                                    sclass="btn-danger"/>
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+        </vlayout>
+ 
+      <window id="userDialog" 
+        title="@load(vm.dialogTitle)"
+        mode="modal" width="400px"
+        visible="@bind(vm.dialogVisible)" closable="false">
+
+    <vlayout width="100%" spacing="10px">
+
+        <textbox placeholder="Nome" width="100%"
+                 value="@bind(vm.editUser.name)"/>
+
+        <textbox placeholder="Usuário" width="100%"
+                 value="@bind(vm.editUser.username)"/>
+
+        <textbox placeholder="Senha" type="password" width="100%"
+                 value="@bind(vm.editUser.password)"/>
+
+        <hlayout spacing="10px">
+            <button label="Salvar" onClick="@command('saveUser')"/>
+            <button label="Cancelar" onClick="@command('closeDialog')"/>
+        </hlayout>
+    </vlayout>
+    </window>
+
+    </window>
+</zk>

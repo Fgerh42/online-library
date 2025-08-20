@@ -1,0 +1,10 @@
+com/fabricio/onlinelibrary/DashboardVM.class
+com/fabricio/onlinelibrary/UsersVM.class
+com/fabricio/onlinelibrary/filter/UrlRewriteFilter.class
+com/fabricio/onlinelibrary/database/DBHelper.class
+com/fabricio/onlinelibrary/UserDAO.class
+com/fabricio/onlinelibrary/models/User.class
+com/fabricio/onlinelibrary/LoginVM.class
+com/fabricio/onlinelibrary/BooksVM.class
+com/fabricio/onlinelibrary/models/Book.class
+com/fabricio/onlinelibrary/RegisterVM.class
