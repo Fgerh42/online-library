@@ -7,9 +7,7 @@ Build Tool: Maven
 
 Installation:
 
-Clone the repo:
-git clone https://github.com/YOUR_USERNAME/online-library.git
-cd online-library
+Clone the repo
 
 Build the project:
 mvn clean install
